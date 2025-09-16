@@ -115,7 +115,33 @@ header .logo img {
   margin: 0; 
 font-family: var(--primary-font);
 }
-
+.modal-body{
+  padding: 5px !important;
+}
+.video-content iframe {
+  display: block;
+}
+.social-media-modal .social-icon{
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  text-align: center;
+  flex-direction: column;
+}
+.social-media-modal .social-icon img{
+  width: 40px;
+  display: flex;
+  margin: 5px auto;
+  justify-content: center;
+}
+.social-media-modal .social-icon h6{
+  text-align: center;
+  margin-bottom: 0px;
+  font-size: 12px;
+}
 
 
 /* responsive */
