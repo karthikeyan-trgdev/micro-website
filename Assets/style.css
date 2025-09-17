@@ -319,6 +319,10 @@ header .shape .shape-img {
   }
   .banner-section .menu-items {
     width: 250px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
   }
   .banner-section .menu-items .item .content h1 {
     font-size: 11px;
