@@ -338,4 +338,12 @@ header .shape .shape-img {
     width: 45px;
     padding: 12px;
   }
+   .social-media-modal .modal-content {
+    width: 250px;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 322px;
+  }
 }
