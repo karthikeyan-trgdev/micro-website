@@ -331,7 +331,7 @@ header .shape .shape-img {
     width: 45px;
     padding: 12px;
   }
-  .banner-section .menu-items {
+    .banner-section .menu-items {
     width: 250px;
     height: 322px;
     position: absolute;
@@ -340,22 +340,18 @@ header .shape .shape-img {
     transform: translate(-50%, -50%);
   }
 
-  /* Force Bootstrap modal to behave like menu-items */
   .social-media-modal .modal-dialog {
-    margin: 0 !important;
+    margin: 0 !important; 
     height: 100%;
-    display: flex;
-    align-items: center;   /* vertical center */
-    justify-content: center; /* horizontal center */
   }
 
   .social-media-modal .modal-content {
     width: 250px !important;
     height: 322px;
-    margin: 0;          /* remove Bootstrap auto-margin */
-    position: relative; /* relative, so it's flex-centered */
-    top: auto;          /* remove old top: 55% */
-    left: auto;         /* remove old left: 50% */
-    transform: none;    /* remove old translate */
+    position: absolute;
+    top: 50%;     /* match menu-items */
+    left: 50%;    /* match menu-items */
+    transform: translate(-50%, -50%);
+    margin: 0 !important; /* stop Bootstrap margin */
   }
 }
