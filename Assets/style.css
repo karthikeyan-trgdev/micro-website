@@ -317,14 +317,7 @@ header .shape .shape-img {
   header .logo {
     top: 40%;
   }
-  .banner-section .menu-items {
-    width: 250px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: 322px;
-  }
+
   .social-media-modal .modal-content {
     width: 250px !important;
     height: 322px;
@@ -338,20 +331,31 @@ header .shape .shape-img {
     width: 45px;
     padding: 12px;
   }
-   .social-media-modal .modal-content {
-    margin: auto;
+  .banner-section .menu-items {
     width: 250px;
+    height: 322px;
     position: absolute;
-    top: 55%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    height: 322px;
   }
+
+  /* Force Bootstrap modal to behave like menu-items */
   .social-media-modal .modal-dialog {
-    margin: 0 !important; 
-    height: 100%; /* fill parent */
+    margin: 0 !important;
+    height: 100%;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: center;   /* vertical center */
+    justify-content: center; /* horizontal center */
+  }
+
+  .social-media-modal .modal-content {
+    width: 250px !important;
+    height: 322px;
+    margin: 0;          /* remove Bootstrap auto-margin */
+    position: relative; /* relative, so it's flex-centered */
+    top: auto;          /* remove old top: 55% */
+    left: auto;         /* remove old left: 50% */
+    transform: none;    /* remove old translate */
   }
 }
