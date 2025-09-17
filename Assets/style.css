@@ -331,7 +331,7 @@ header .shape .shape-img {
     width: 45px;
     padding: 12px;
   }
-    .banner-section .menu-items {
+  .banner-section .menu-items {
     width: 250px;
     height: 322px;
     position: absolute;
@@ -341,17 +341,20 @@ header .shape .shape-img {
   }
 
   .social-media-modal .modal-dialog {
-    margin: 0 !important; 
-    height: 100%;
+    margin: 0 !important;     /* remove Bootstrap spacing */
+    height: 100vh;            /* force full viewport height */
+    display: flex;
+    align-items: center;      /* vertical center */
+    justify-content: center;  /* horizontal center */
   }
 
   .social-media-modal .modal-content {
     width: 250px !important;
     height: 322px;
-    position: absolute;
-    top: 50%;     /* match menu-items */
-    left: 50%;    /* match menu-items */
-    transform: translate(-50%, -50%);
-    margin: 0 !important; /* stop Bootstrap margin */
+    margin: 0 !important;
+    position: relative;       /* let flexbox center it */
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
   }
 }
