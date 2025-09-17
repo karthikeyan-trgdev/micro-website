@@ -4,11 +4,10 @@
   box-sizing: border-box;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
 body {
   font-family: var(--primary-font);
-  background-color: #000 !important;
 }
 
 :root {
@@ -19,14 +18,35 @@ body {
   --primary-font: "Montserrat", sans-serif;
 }
 
-.container{
-    padding: 0px !important;
+.container {
+  padding: 0px 10px !important;
 }
+
+.main-wrapper {
+  background-image: url("../Assets/Images/background-image.png");
+  background-size: cover;
+  background-position: bottom center;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.main-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 0;
+  background-color: #000;
+  opacity: 0.9;
+}
+
 .main-content {
   max-width: 550px;
   margin: auto;
   position: relative;
-  overflow:hidden ;
 }
 
 header {
@@ -73,7 +93,7 @@ header .logo img {
   width: 300px;
   overflow: hidden;
   margin: auto;
-  text-align: left; 
+  text-align: left;
   background-color: var(--primary-color);
   padding: 0px;
 }
@@ -84,7 +104,7 @@ header .logo img {
   align-items: center;
   border-bottom: 0.5px solid #ffffff36;
   text-decoration: none;
-  color: var(--light-color); 
+  color: var(--light-color);
 }
 
 .banner-section .menu-items .item .icon {
@@ -112,16 +132,16 @@ header .logo img {
   font-size: 15px;
   letter-spacing: 0.5px;
   font-weight: 600;
-  margin: 0; 
-font-family: var(--primary-font);
+  margin: 0;
+  font-family: var(--primary-font);
 }
-.modal-body{
+.modal-body {
   padding: 5px !important;
 }
 .video-content iframe {
   display: block;
 }
-.social-media-modal .social-icon{
+.social-media-modal .social-icon {
   width: 80px;
   height: 80px;
   display: flex;
@@ -131,40 +151,100 @@ font-family: var(--primary-font);
   text-align: center;
   flex-direction: column;
 }
-.social-media-modal .social-icon img{
+.social-media-modal .social-icon img {
   width: 40px;
   display: flex;
   margin: 5px auto;
   justify-content: center;
 }
-.social-media-modal .social-icon h6{
+.social-media-modal .social-icon h6 {
   text-align: center;
   margin-bottom: 0px;
   font-size: 12px;
 }
+.social-media-modal a {
+  text-decoration: none;
+  color: #000;
+}
+.event-page {
+  padding: 130px 10px 0px 10px;
+}
+header .shape .shape-img {
+  filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.15))
+    drop-shadow(0px 1px 3px rgba(0, 0, 0, 0.1));
+}
+.all-videos {
+  padding-top: 40px;
+}
+.all-videos h3{
+  font-size: 16px;
+  text-decoration: underline;
+  padding-bottom: 10px;
+}
+.event-page .date{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 10px;
+}
+.event-page .date h6{
+  margin-bottom: 0px;
+  font-size: 15px;
+}
+.event-page .date i{
+  font-size: 15px;
+}
+.all-videos .date h6{
+  font-size: 12px;
+}
+.all-videos .date i{
+  font-size: 10px;
+}
+.all-videos .date {
+  margin-top: 5px;
+}
+.all-videos iframe{
+  border-radius: 10px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+                    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+.main-video iframe{
+  border-radius: 10px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+                    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+.all-videos .item{
+  margin-bottom: 20px;
+}
+
+
 
 
 /* responsive */
 
 @media only screen and (max-width: 600px) {
-    header .shape{
-        transform: none;
-    }
-    header .logo img{
-        width: 100px;
-    }
-    header .logo{
-        top: 40%;
-    }
-    .banner-section .menu-items{
-        width: 250px;
-    }
-    .banner-section .menu-items .item .content h1{
-        font-size: 11px;
-    }
-    .banner-section .menu-items .item .icon{
-        height: 45px;
-        width: 45px;
-        padding: 12px;
-    }
+  .main-content{
+    max-width: 100%;
+    width: 100%;
+  }
+  header .shape {
+    transform: none;
+  }
+  header .logo img {
+    width: 100px;
+  }
+  header .logo {
+    top: 40%;
+  }
+  .banner-section .menu-items {
+    width: 250px;
+  }
+  .banner-section .menu-items .item .content h1 {
+    font-size: 11px;
+  }
+  .banner-section .menu-items .item .icon {
+    height: 45px;
+    width: 45px;
+    padding: 12px;
+  }
 }
