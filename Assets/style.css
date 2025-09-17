@@ -91,7 +91,7 @@ header .logo img {
 
 .banner-section .menu-items {
   width: 300px;
-  height: 322px;
+  height: 425px;
   overflow: hidden;
   margin: auto;
   text-align: left;
@@ -139,11 +139,11 @@ header .logo img {
   font-family: var(--primary-font);
 }
 .modal-body {
-  padding:0px 10px !important;
+  padding: 0px 10px !important;
 }
-.modal-content {
-  width: 255px !important;
-  height: 325px;
+.social-media-modal .modal-content {
+  width: 300px !important;
+  height: 425px;
   margin: auto;
 }
 .modal-header h1 {
@@ -180,11 +180,11 @@ header .logo img {
   text-decoration: none;
   color: #000;
 } */
-.social-media-modal a{
+.social-media-modal a {
   color: #000;
   text-decoration: none;
 }
-.social-media-modal .item{
+.social-media-modal .item {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -195,7 +195,7 @@ header .logo img {
 .social-media-modal .social-profiles .item:last-child {
   border-bottom: 0px;
 }
-.social-media-modal .profile-details-main{
+.social-media-modal .profile-details-main {
   display: flex;
   gap: 10px;
   align-items: center;
@@ -210,7 +210,7 @@ header .logo img {
   align-items: center;
   justify-content: center;
   position: relative;
-    flex-shrink: 0;
+  flex-shrink: 0;
 }
 .social-media-modal .profile-image img {
   width: 30px;
@@ -232,11 +232,11 @@ header .logo img {
 .social-media-modal .profile-icon img {
   width: 10px;
 }
-.social-media-modal .profile-name h3{
+.social-media-modal .profile-name h3 {
   font-size: 12px;
   margin-bottom: 0px;
 }
-.social-media-modal  .navigate-icon img{
+.social-media-modal .navigate-icon img {
   width: 15px;
   opacity: 0.5;
 }
@@ -322,7 +322,13 @@ header .shape .shape-img {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
+    height: 322px;
+  }
+  .social-media-modal .modal-content {
+    width: 250px !important;
+    height: 322px;
+    margin: auto;
   }
   .banner-section .menu-items .item .content h1 {
     font-size: 11px;
