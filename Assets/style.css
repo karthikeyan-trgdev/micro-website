@@ -339,14 +339,16 @@ header .shape .shape-img {
     padding: 12px;
   }
    .social-media-modal .modal-content {
+    margin: auto;
     width: 250px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: relative;
     height: 322px;
   }
   .social-media-modal .modal-dialog {
-    margin: 0 !important; /* remove default Bootstrap margin */
+    margin: 0 !important; 
+    height: 100%; /* fill parent */
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
