@@ -339,8 +339,12 @@ header .shape .shape-img {
     padding: 12px;
   }
    .social-media-modal .modal-content {
+    margin: auto;
     width: 250px;
-    position: relative;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     height: 322px;
   }
   .social-media-modal .modal-dialog {
