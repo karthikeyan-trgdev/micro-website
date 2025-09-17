@@ -167,7 +167,7 @@ header .logo img {
   color: #000;
 }
 .event-page {
-  padding: 130px 10px 0px 10px;
+  padding: 150px 10px 0px 10px;
 }
 header .shape .shape-img {
   filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.15))
@@ -216,7 +216,15 @@ header .shape .shape-img {
 .all-videos .item{
   margin-bottom: 20px;
 }
-
+.event-page .item{
+  background-color: #f5f5f5;
+  border: 1px solid #e2e2e2;
+  padding: 10px;
+  border-radius: 10px;
+}
+.event-page .main-video .item{
+  padding: 10px 10px 15px 10px;
+}
 
 
 
