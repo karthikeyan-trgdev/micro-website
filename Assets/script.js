@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let allVideos = Array.from(document.querySelectorAll(".all-videos .col-6"));
     let found = false;
 
-    // Always enforce correct sizing for main
     function setMainVideoContent(html) {
       mainVideo.innerHTML = html;
       const iframe = mainVideo.querySelector("iframe");
@@ -18,7 +17,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    // Always enforce correct sizing for small
     function setSmallVideoContent(item, html) {
       item.innerHTML = html;
       const iframe = item.querySelector("iframe");
@@ -28,12 +26,10 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    // Convert "Month Year" → Date
     function parseMonthYear(text) {
       return new Date(text);
     }
 
-    // Sort videos in DESCENDING order (latest first)
     allVideos.sort((a, b) => {
       const aDate = parseMonthYear(
         a.querySelector(".date h6").innerText.trim()
@@ -41,13 +37,11 @@ document.addEventListener("DOMContentLoaded", function () {
       const bDate = parseMonthYear(
         b.querySelector(".date h6").innerText.trim()
       );
-      return bDate - aDate; // 👈 descending
+      return bDate - aDate; 
     });
 
-    // Re-append sorted videos
     allVideos.forEach((col) => videoRow.appendChild(col));
 
-    // Pick current month as main (if exists)
     allVideos.forEach((col) => {
       const item = col.querySelector(".item");
       const dateText = item.querySelector(".date h6").innerText.trim();
@@ -59,7 +53,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-    // Fallback → latest (first after sorting)
     if (!found && allVideos.length > 0) {
       const firstCol = allVideos[0];
       const item = firstCol.querySelector(".item");
@@ -67,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
       firstCol.remove();
     }
 
-    // Click-to-swap logic
+
     function attachClickEvents() {
       const videoItems = document.querySelectorAll(".all-videos .col-6 .item");
       videoItems.forEach((item) => {
