@@ -242,13 +242,14 @@ header .logo img {
 
 .event-page {
   padding: 150px 10px 0px 10px;
+  background-color: #1d9ed11f;
 }
 header .shape .shape-img {
   filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.15))
     drop-shadow(0px 1px 3px rgba(0, 0, 0, 0.1));
 }
 .all-videos {
-  padding-top: 40px;
+  padding-top: 30px;
 }
 .all-videos h3 {
   font-size: 16px;
@@ -260,7 +261,7 @@ header .shape .shape-img {
   align-items: center;
   justify-content: space-between;
   gap: 5px;
-  margin-top: 10px;
+padding: 10px 5px;
 }
 .event-page .date {
   display: flex;
@@ -270,19 +271,11 @@ header .shape .shape-img {
 .event-page .date h6 {
   margin-bottom: 0px;
   font-size: 12px;
+    color: #000;
 }
 .event-page .date svg {
   font-size: 14px;
-}
-.all-videos .date h6 {
-  font-size: 12px;
-  font-weight: 500;
-}
-.all-videos .date svg {
-  font-size: 12px;
-}
-.all-videos .date {
-  margin-top: 5px;
+  color: #000;
 }
 .all-videos .item-des .content {
   display: none;
@@ -291,6 +284,7 @@ header .shape .shape-img {
   font-size: 15px;
   margin-bottom: 0px;
   padding-bottom: 0px;
+  color: #000;
 }
 .event-page .all-videos .item-des {
   display: none;
@@ -309,28 +303,10 @@ header .shape .shape-img {
   margin-bottom: 20px;
 }
 .event-page .item {
-  background-color: #1d9ed11f;
+  background-color: #fff;
   border: 1px solid #e2e2e2;
   padding: 5px;
   border-radius: 10px;
-}
-.event-page .main-video .item {
-  padding: 10px 10px 15px 10px;
-}
-.event-page .all-videos .item-1 {
-  background-color: #f6c21830;
-}
-.event-page .all-videos .item-2 {
-  background-color: #4cb8482b;
-}
-.event-page .all-videos .item-3 {
-  background-color: #ed184617;
-}
-.event-page .all-videos .item-4 {
-  background-color: #1d9ed11f;
-}
-.event-page .all-videos .item-5 {
-  background-color: #f6c21830;
 }
 .event-page .section-title {
   text-align: center;
