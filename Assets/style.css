@@ -92,7 +92,6 @@ header .logo img {
 .banner-section .menu-items {
   width: 300px;
   height: 425px;
-  overflow: hidden;
   margin: auto;
   text-align: left;
   background-color: var(--primary-color);
