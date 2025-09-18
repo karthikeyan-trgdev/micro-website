@@ -211,6 +211,7 @@ header .logo img {
 }
 .social-media-modal .profile-image img {
   width: 30px;
+  padding: 5px;
 }
 .social-media-modal .profile-icon {
   height: 20px;
