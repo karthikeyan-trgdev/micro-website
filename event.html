@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CMIS - Chandramari International School</title>
+
     <link rel="stylesheet" href="Assets/style.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -38,123 +39,322 @@
 
       <section class="event-page">
         <div class="container">
+          <div class="section-title">
+            <h1>School Events & Memories</h1>
+            <p>Catch up on the highlights of every month at CMIS</p>
+          </div>
 
+          <!-- MAIN (empty placeholder; JS will inject iframe) -->
           <div class="row mb-4">
             <div class="col-12">
               <div class="main-video">
-                <div class="item"></div>
+                <!-- main .item will be filled by JS -->
+                <div class="item" data-video="" data-thumb="">
+                  <!-- JS will inject iframe + meta here -->
+                </div>
               </div>
             </div>
           </div>
 
+          <!-- THUMBNAILS: use your own images for data-thumb -->
           <div class="row all-videos">
             <div class="title">
               <h3>Every Month Events</h3>
             </div>
             <div class="event-slider">
               <div class="row">
+                <!-- NOTE: each .item must have data-video (YouTube video id) and data-thumb (your image path) -->
+
                 <div class="col-6">
-                  <div class="item">
-                    <iframe
-                      width="100%"
-                      height="80"
-                      src="https://www.youtube.com/embed/vz5f6lGMIyI?autoplay=1&mute=1&controls=0&modestbranding=1&showinfo=0&rel=0&loop=1&playlist=vz5f6lGMIyI"
-                      frameborder="0"
-                      allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowfullscreen
-                    ></iframe>
-                    <div class="date">
-                      <i class="fa-solid fa-calendar-days"></i>
-                      <h6>August 2025</h6>
+                  <div
+                    class="item"
+                    data-video="vz5f6lGMIyI"
+                    data-thumb="Assets/Images/thumb5.jpg"
+                  >
+                    <img
+                      class="thumb-img"
+                      src="Assets/Images/thumb5.jpg"
+                      alt="Field Trip"
+                    />
+                    <div class="item-des">
+                      <div class="content"><h6>Field Trip</h6></div>
+                      <div class="date">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <h6>September 2025</h6>
+                      </div>
                     </div>
                   </div>
                 </div>
 
                 <div class="col-6">
-                  <div class="item">
-                    <iframe
-                      width="100%"
-                      height="80"
-                      src="https://www.youtube.com/embed/vz5f6lGMIyI?autoplay=1&mute=1&controls=0&modestbranding=1&showinfo=0&rel=0&loop=1&playlist=vz5f6lGMIyI"
-                      frameborder="0"
-                      allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowfullscreen
-                    ></iframe>
-                    <div class="date">
-                      <i class="fa-solid fa-calendar-days"></i>
-                      <h6>July 2025</h6>
+                  <div
+                    class="item"
+                    data-video="vz5f6lGMIyI"
+                    data-thumb="Assets/Images/month-thumbnails/august.jpg"
+                  >
+                    <img
+                      class="thumb-img"
+                      src="Assets/Images/month-thumbnails/august.jpg"
+                      alt="Annual Day"
+                    />
+                    <div class="item-des">
+                      <div class="content"><h6>Annual Day Celebration</h6></div>
+                      <div class="date">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <h6>August 2025</h6>
+                      </div>
                     </div>
                   </div>
                 </div>
+
                 <div class="col-6">
-                  <div class="item">
-                    <iframe
-                      width="100%"
-                      height="80"
-                      src="https://www.youtube.com/embed/vz5f6lGMIyI?autoplay=1&mute=1&controls=0&modestbranding=1&showinfo=0&rel=0&loop=1&playlist=vz5f6lGMIyI"
-                      frameborder="0"
-                      allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowfullscreen
-                    ></iframe>
-                    <div class="date">
-                      <i class="fa-solid fa-calendar-days"></i>
-                      <h6>June 2025</h6>
+                  <div
+                    class="item"
+                    data-video="vz5f6lGMIyI"
+                    data-thumb="Assets/Images/month-thumbnails/june.jpg"
+                  >
+                    <img
+                      class="thumb-img"
+                      src="Assets/Images/month-thumbnails/june.jpg"
+                      alt="Sports Day"
+                    />
+                    <div class="item-des">
+                      <div class="content"><h6>Sports Day Highlights</h6></div>
+                      <div class="date">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <h6>July 2025</h6>
+                      </div>
                     </div>
                   </div>
                 </div>
+
                 <div class="col-6">
-                  <div class="item">
-                    <iframe
-                      width="100%"
-                      height="80"
-                      src="https://www.youtube.com/embed/vz5f6lGMIyI?autoplay=1&mute=1&controls=0&modestbranding=1&showinfo=0&rel=0&loop=1&playlist=vz5f6lGMIyI"
-                      frameborder="0"
-                      allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowfullscreen
-                    ></iframe>
-                    <div class="date">
-                      <i class="fa-solid fa-calendar-days"></i>
-                      <h6>September 2025</h6>
+                  <div
+                    class="item"
+                    data-video="vz5f6lGMIyI"
+                    data-thumb="Assets/Images/month-thumbnails/june.jpg"
+                  >
+                    <img
+                      class="thumb-img"
+                      src="Assets/Images/month-thumbnails/june.jpg"
+                      alt="Science Fair"
+                    />
+                    <div class="item-des">
+                      <div class="content"><h6>Science Fair</h6></div>
+                      <div class="date">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <h6>June 2025</h6>
+                      </div>
                     </div>
                   </div>
                 </div>
+
                 <div class="col-6">
-                  <div class="item">
-                    <iframe
-                      width="100%"
-                      height="80"
-                      src="https://www.youtube.com/embed/vz5f6lGMIyI?autoplay=1&mute=1&controls=0&modestbranding=1&showinfo=0&rel=0&loop=1&playlist=vz5f6lGMIyI"
-                      frameborder="0"
-                      allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowfullscreen
-                    ></iframe>
-                    <div class="date">
-                      <i class="fa-solid fa-calendar-days"></i>
-                      <h6>May 2025</h6>
+                  <div
+                    class="item"
+                    data-video="vz5f6lGMIyI"
+                    data-thumb="Assets/Images/month-thumbnails/august.jpg"
+                  >
+                    <img
+                      class="thumb-img"
+                      src="Assets/Images/month-thumbnails/august.jpg"
+                      alt="Art Week"
+                    />
+                    <div class="item-des">
+                      <div class="content"><h6>Art Week</h6></div>
+                      <div class="date">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <h6>May 2025</h6>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
+              <!-- .row -->
             </div>
+            <!-- .event-slider -->
           </div>
+          <!-- .all-videos -->
         </div>
       </section>
     </div>
 
-    <!-- JS -->
+    <!-- JS libs -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/js/all.min.js"></script>
-    <script src="Assets/script.js"></script>
 
-<script>
-  
-</script>
+    <!-- Core behavior -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const now = new Date();
+        const options = { month: "long", year: "numeric" };
+        const currentMonthYear = now.toLocaleDateString("en-US", options); // e.g. "September 2025"
 
+        const mainItem = document.querySelector(".main-video .item");
+        const videoRow = document.querySelector(".all-videos .row");
+        let cols = Array.from(document.querySelectorAll(".all-videos .col-6"));
 
+        // helper: parse "Month Year" robustly
+        function parseMonthYear(text) {
+          const parts = text.trim().split(" ");
+          const monthNames = [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December",
+          ];
+          const monthIndex = monthNames.indexOf(parts[0]);
+          const year = parseInt(parts[1], 10) || new Date().getFullYear();
+          return new Date(year, monthIndex, 1);
+        }
 
+        // helpers to create HTML
+        function makeMainHTML(videoId, title, date) {
+          const src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1`;
+          return `
+            <div class="video-frame-wrapper">
+              <iframe width="100%" height="168" src="${src}" frameborder="0"
+                allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="item-des">
+              <div class="content"><h6>${title}</h6></div>
+              <div class="date"><i class="fa-solid fa-calendar-days"></i><h6>${date}</h6></div>
+            </div>
+          `;
+        }
 
+        function makeThumbHTML(thumb, title, date) {
+          return `
+            <img class="thumb-img" src="${thumb}" alt="${title}" />
+            <div class="item-des">
+              <div class="content"><h6>${title}</h6></div>
+              <div class="date"><i class="fa-solid fa-calendar-days"></i><h6>${date}</h6></div>
+            </div>
+          `;
+        }
 
+        // Sort columns in DESCENDING order by date (latest first)
+        cols.sort((a, b) => {
+          const aDateText = a.querySelector(".date h6").innerText.trim();
+          const bDateText = b.querySelector(".date h6").innerText.trim();
+          return parseMonthYear(bDateText) - parseMonthYear(aDateText);
+        });
+
+        // Re-append in sorted order
+        cols.forEach((c) => videoRow.appendChild(c));
+
+        // Promote current month (or fallback to first)
+        let promoted = false;
+        cols.forEach((col) => {
+          const item = col.querySelector(".item");
+          const dateText = item.querySelector(".date h6").innerText.trim();
+
+          if (!promoted && dateText === currentMonthYear) {
+            // get data from this thumbnail
+            const videoId = item.dataset.video;
+            const thumb = item.dataset.thumb;
+            const title = item.querySelector(".content h6").innerText.trim();
+            const date = dateText;
+
+            // set main
+            mainItem.innerHTML = makeMainHTML(videoId, title, date);
+            mainItem.dataset.video = videoId;
+            mainItem.dataset.thumb = thumb;
+            mainItem.dataset.title = title;
+            mainItem.dataset.date = date;
+
+            // remove original col so grid doesn't break
+            col.remove();
+            promoted = true;
+          }
+        });
+
+        // Fallback to the first (latest) if nothing matched current month
+        if (!promoted && cols.length > 0) {
+          const firstCol = cols[0];
+          const item = firstCol.querySelector(".item");
+          const videoId = item.dataset.video;
+          const thumb = item.dataset.thumb;
+          const title = item.querySelector(".content h6").innerText.trim();
+          const date = item.querySelector(".date h6").innerText.trim();
+
+          mainItem.innerHTML = makeMainHTML(videoId, title, date);
+          mainItem.dataset.video = videoId;
+          mainItem.dataset.thumb = thumb;
+          mainItem.dataset.title = title;
+          mainItem.dataset.date = date;
+
+          firstCol.remove();
+        }
+
+        // Event delegation: clicking any thumbnail swaps with main
+        videoRow.addEventListener("click", function (e) {
+          const clickedItem = e.target.closest(".col-6 .item");
+          if (!clickedItem) return;
+
+          // gather clicked data
+          const clickedVideoId = clickedItem.dataset.video;
+          const clickedThumb = clickedItem.dataset.thumb;
+          const clickedTitle = clickedItem
+            .querySelector(".content h6")
+            .innerText.trim();
+          const clickedDate = clickedItem
+            .querySelector(".date h6")
+            .innerText.trim();
+
+          // gather current main data
+          const mainVideoId = mainItem.dataset.video;
+          const mainThumb = mainItem.dataset.thumb;
+          const mainTitle =
+            mainItem.dataset.title ||
+            (mainItem.querySelector(".content h6")
+              ? mainItem.querySelector(".content h6").innerText.trim()
+              : "");
+          const mainDate =
+            mainItem.dataset.date ||
+            (mainItem.querySelector(".date h6")
+              ? mainItem.querySelector(".date h6").innerText.trim()
+              : "");
+
+          // 1) Put clicked content into main (autoplay)
+          mainItem.innerHTML = makeMainHTML(
+            clickedVideoId,
+            clickedTitle,
+            clickedDate
+          );
+          mainItem.dataset.video = clickedVideoId;
+          mainItem.dataset.thumb = clickedThumb;
+          mainItem.dataset.title = clickedTitle;
+          mainItem.dataset.date = clickedDate;
+
+          // 2) Replace clicked slot with the previous main's thumbnail (small)
+          // If there was no previous main (edge case), fall back to a default thumbnail
+          const replacementThumb =
+            mainThumb || clickedThumb || "Assets/Images/default-thumb.jpg";
+          const replacementTitle = mainTitle || clickedTitle || "";
+          const replacementDate = mainDate || clickedDate || "";
+
+          clickedItem.innerHTML = makeThumbHTML(
+            replacementThumb,
+            replacementTitle,
+            replacementDate
+          );
+          clickedItem.dataset.video = mainVideoId || ""; // previous main id (may be empty)
+          clickedItem.dataset.thumb = replacementThumb;
+        });
+
+        // End DOMContentLoaded
+      });
+    </script>
   </body>
 </html>
