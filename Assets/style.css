@@ -146,7 +146,7 @@ header .logo img {
   margin: auto;
 }
 .modal-header h1 {
-  font-size: 15px !important;
+  font-size: 18px !important;
 }
 .modal-header .btn-close {
   font-size: 10px;
@@ -188,7 +188,7 @@ header .logo img {
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #f0f0f0 !important; /* shorthand hex for rgb(240,240,240) */
-  padding: 10px 0;
+  padding: 15px 0;
   flex-shrink: 0;
 }
 .social-media-modal .profile-details-main {
@@ -197,8 +197,8 @@ header .logo img {
   align-items: center;
 }
 .social-media-modal .profile-image {
-  height: 44px;
-  width: 44px;
+  height: 50px;
+  width: 50px;
   border-radius: 50%;
   background-color: rgb(234, 250, 255);
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
@@ -232,7 +232,7 @@ header .logo img {
   width: 10px;
 }
 .social-media-modal .profile-name h3 {
-  font-size: 12px;
+  font-size: 15px;
   margin-bottom: 0px;
 }
 .social-media-modal .navigate-icon img {
@@ -261,7 +261,7 @@ header .shape .shape-img {
   align-items: center;
   justify-content: space-between;
   gap: 5px;
-padding: 10px 5px;
+  padding: 10px 5px;
 }
 .event-page .date {
   display: flex;
@@ -270,8 +270,8 @@ padding: 10px 5px;
 }
 .event-page .date h6 {
   margin-bottom: 0px;
-  font-size: 12px;
-    color: #000;
+  font-size: 14px;
+  color: #000;
 }
 .event-page .date svg {
   font-size: 14px;
@@ -304,7 +304,8 @@ padding: 10px 5px;
 }
 .event-page .item {
   background-color: #fff;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
   padding: 5px;
   border-radius: 10px;
 }
@@ -313,13 +314,13 @@ padding: 10px 5px;
   margin-bottom: 30px;
 }
 .event-page .section-title h1 {
-  font-size: 20px;
+  font-size: 25px;
   color: var(--primary-color);
   font-weight: 600;
   text-transform: capitalize;
 }
 .event-page .section-title p {
-  font-size: 12px;
+  font-size: 15px;
 }
 
 .all-videos .item img.thumb-img {
@@ -335,7 +336,15 @@ padding: 10px 5px;
   cursor: pointer;
 }
 
-
+.main-video iframe{
+  height: 280px;
+}
+.all-videos .item img.thumb-img{
+  height: 120px;
+}
+.event-page .item-des .content h6{
+  font-size: 18px;
+}
 
 /* responsive */
 
@@ -393,4 +402,38 @@ padding: 10px 5px;
     left: auto !important;
     transform: none !important;
   }
+  .social-media-modal .profile-image {
+    height: 44px;
+    width: 44px;
+  }
+  .social-media-modal .profile-name h3 {
+  font-size: 12px;
+}
+.modal-header h1 {
+  font-size: 15px !important;
+}
+.social-media-modal .item {
+  padding: 10px 0;
+}
+.event-page .section-title h1 {
+  font-size: 20px;
+}
+.event-page .section-title p {
+  font-size: 12px;
+}
+.main-video iframe{
+  height: 192px;
+}
+.main-video iframe{
+  height: 192px;
+}
+.all-videos .item img.thumb-img{
+  height: 80px;
+}
+.event-page .item-des .content h6{
+  font-size: 15px;
+}
+.event-page .date h6{
+  font-size: 12px;
+}
 }
