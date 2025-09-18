@@ -96,6 +96,7 @@ header .logo img {
   text-align: left;
   background-color: var(--primary-color);
   padding: 0px;
+  overflow: hidden;
 }
 
 .banner-section .menu-items .item a {
