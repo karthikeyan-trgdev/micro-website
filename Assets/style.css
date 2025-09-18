@@ -23,7 +23,7 @@ body {
 }
 
 .main-wrapper {
-  background-image: url("../Assets/Images/background-image.png");
+  background-image: url("../Assets/Images/background-image.jpg");
   background-size: cover;
   background-position: bottom center;
   position: relative;
@@ -78,7 +78,7 @@ header .logo img {
 }
 
 .banner-section {
-  background-image: url(../Assets/Images/background-image.png);
+  background-image: url(../Assets/Images/background-image.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: bottom;
@@ -334,6 +334,8 @@ padding: 10px 5px;
 .all-videos .item {
   cursor: pointer;
 }
+
+
 
 /* responsive */
 
