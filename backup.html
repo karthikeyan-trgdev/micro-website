@@ -24,12 +24,6 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
     />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-    <style>
-      /* small helper so iframe height looks decent on small cards */
-      .video-frame-wrapper iframe{min-height:220px;height:100%;}
-      /* optional: make the active main's thumbnail visually indicated if you want */
-      .item.playing { outline: 3px solid rgba(0,123,255,0.15); }
-    </style>
   </head>
 
   <body>
@@ -57,7 +51,7 @@
             <div class="col-12">
               <div class="main-video"  data-aos="zoom-in" data-aos-duration="1000" >
                 <!-- main .item will be filled by JS -->
-                <div class="item" data-video="" data-thumb="" data-title="" data-date="">
+                <div class="item" data-video="" data-thumb="">
                   <!-- JS will inject iframe + meta here -->
                 </div>
               </div>
@@ -99,12 +93,12 @@
                   <div
                     class="item"
                     data-video="vz5f6lGMIyI"
-                    data-thumb="Assets/Images/month-thumbnails/july.jpg"
+                    data-thumb="Assets/Images/month-thumbnails/august.jpg"
                     data-date="July 2025"
                   >
                     <img
                       class="thumb-img"
-                      src="Assets/Images/month-thumbnails/july.jpg"
+                      src="Assets/Images/month-thumbnails/august.jpg"
                       alt="Annual Day"
                     />
                     <div class="item-des">
@@ -121,12 +115,12 @@
                   <div
                     class="item"
                     data-video="vz5f6lGMIyI"
-                    data-thumb="Assets/Images/month-thumbnails/august.jpg"
+                    data-thumb="Assets/Images/month-thumbnails/july.jpg"
                     data-date="August 2025"
                   >
                     <img
                       class="thumb-img"
-                      src="Assets/Images/month-thumbnails/august.jpg"
+                      src="Assets/Images/month-thumbnails/july.jpg"
                       alt="Sports Day"
                     />
                     <div class="item-des">
@@ -209,34 +203,32 @@
         const currentMonthYear = now.toLocaleDateString("en-US", options); // e.g. "September 2025"
 
         const mainItem = document.querySelector(".main-video .item");
-        // choose the inner row that contains thumbnail columns
-        const videoRow = document.querySelector(".event-slider .row");
-        // small month names array for parsing
-        const monthNames = [
-          "January",
-          "February",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July",
-          "August",
-          "September",
-          "October",
-          "November",
-          "December",
-        ];
+        const videoRow = document.querySelector(".all-videos .row");
+        let cols = Array.from(document.querySelectorAll(".all-videos .col-6"));
 
-        // parse "Month Year" -> Date object (first day of month)
+        // helper: parse "Month Year" robustly
         function parseMonthYear(text) {
-          if (!text || typeof text !== "string") return new Date(0);
-          const parts = text.trim().split(/\s+/);
+          const parts = text.trim().split(" ");
+          const monthNames = [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December",
+          ];
           const monthIndex = monthNames.indexOf(parts[0]);
-          const year = parseInt(parts[1], 10) || NaN;
-          if (monthIndex === -1 || isNaN(year)) return new Date(0);
+          const year = parseInt(parts[1], 10) || new Date().getFullYear();
           return new Date(year, monthIndex, 1);
         }
 
+        // helpers to create HTML
         function makeMainHTML(videoId, title, date) {
           const src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1`;
           return `
@@ -261,120 +253,123 @@
           `;
         }
 
-        // sort the thumbnail columns (descending by data-date)
-        function sortThumbCols() {
-          const cols = Array.from(videoRow.querySelectorAll(".col-6"));
-          cols.sort((a, b) => {
-            const aItem = a.querySelector(".item");
-            const bItem = b.querySelector(".item");
-            const aDate = aItem?.dataset.date || (aItem?.querySelector(".date h6")?.innerText || "");
-            const bDate = bItem?.dataset.date || (bItem?.querySelector(".date h6")?.innerText || "");
-            return parseMonthYear(bDate) - parseMonthYear(aDate);
-          });
-          cols.forEach((c) => videoRow.appendChild(c));
-        }
+        // Sort columns in DESCENDING order by date (latest first)
+        cols.sort((a, b) => {
+          const aDateText = a.querySelector(".date h6").innerText.trim();
+          const bDateText = b.querySelector(".date h6").innerText.trim();
+          return parseMonthYear(bDateText) - parseMonthYear(aDateText);
+        });
 
-        // initial sort on load
-        sortThumbCols();
+        // Re-append in sorted order
+        cols.forEach((c) => videoRow.appendChild(c));
 
         // Promote current month (or fallback to first)
-        const colsInitial = Array.from(videoRow.querySelectorAll(".col-6"));
         let promoted = false;
-        for (const col of colsInitial) {
+        cols.forEach((col) => {
           const item = col.querySelector(".item");
-          const dateText = (item.dataset.date || (item.querySelector(".date h6")?.innerText || "")).trim();
+          const dateText = item.querySelector(".date h6").innerText.trim();
 
           if (!promoted && dateText === currentMonthYear) {
+            // get data from this thumbnail
             const videoId = item.dataset.video;
             const thumb = item.dataset.thumb;
             const title = item.querySelector(".content h6").innerText.trim();
             const date = dateText;
 
+            // set main
             mainItem.innerHTML = makeMainHTML(videoId, title, date);
             mainItem.dataset.video = videoId;
             mainItem.dataset.thumb = thumb;
             mainItem.dataset.title = title;
             mainItem.dataset.date = date;
 
-            // remove the original column so the thumbnail list doesn't contain the main again
+            // remove original col so grid doesn't break
             col.remove();
             promoted = true;
-            break;
           }
-        }
+        });
 
         // Fallback to the first (latest) if nothing matched current month
-        if (!promoted) {
-          const firstCol = videoRow.querySelector(".col-6");
-          if (firstCol) {
-            const item = firstCol.querySelector(".item");
-            const videoId = item.dataset.video;
-            const thumb = item.dataset.thumb;
-            const title = item.querySelector(".content h6").innerText.trim();
-            const date = item.dataset.date || item.querySelector(".date h6").innerText.trim();
+        if (!promoted && cols.length > 0) {
+          const firstCol = cols[0];
+          const item = firstCol.querySelector(".item");
+          const videoId = item.dataset.video;
+          const thumb = item.dataset.thumb;
+          const title = item.querySelector(".content h6").innerText.trim();
+          const date = item.querySelector(".date h6").innerText.trim();
 
-            mainItem.innerHTML = makeMainHTML(videoId, title, date);
-            mainItem.dataset.video = videoId;
-            mainItem.dataset.thumb = thumb;
-            mainItem.dataset.title = title;
-            mainItem.dataset.date = date;
+          mainItem.innerHTML = makeMainHTML(videoId, title, date);
+          mainItem.dataset.video = videoId;
+          mainItem.dataset.thumb = thumb;
+          mainItem.dataset.title = title;
+          mainItem.dataset.date = date;
 
-            // remove first to avoid duplicate thumbnail
-            firstCol.remove();
-          } else {
-            // no thumbnails at all -> leave main empty
-            mainItem.innerHTML = "<p>No videos available</p>";
-          }
+          firstCol.remove();
         }
 
         // Event delegation: clicking any thumbnail swaps with main
         videoRow.addEventListener("click", function (e) {
-          const clickedCol = e.target.closest(".col-6");
-          if (!clickedCol) return;
-          const clickedItem = clickedCol.querySelector(".item");
+          const clickedItem = e.target.closest(".col-6 .item");
           if (!clickedItem) return;
 
-          // clicked data
-          const clickedVideoId = clickedItem.dataset.video || "";
-          const clickedThumb = clickedItem.dataset.thumb || (clickedItem.querySelector(".thumb-img")?.src || "");
-          const clickedTitle =
-            clickedItem.dataset.title ||
-            (clickedItem.querySelector(".content h6") ? clickedItem.querySelector(".content h6").innerText.trim() : "");
-          const clickedDate =
-            clickedItem.dataset.date || (clickedItem.querySelector(".date h6") ? clickedItem.querySelector(".date h6").innerText.trim() : "");
+          // gather clicked data
+          const clickedVideoId = clickedItem.dataset.video;
+          const clickedThumb = clickedItem.dataset.thumb;
+          const clickedTitle = clickedItem
+            .querySelector(".content h6")
+            .innerText.trim();
+          const clickedDate = clickedItem
+            .querySelector(".date h6")
+            .innerText.trim();
 
-          // main data (previous main)
-          const mainVideoId = mainItem.dataset.video || "";
-          const mainThumb = mainItem.dataset.thumb || "";
-          const mainTitle = mainItem.dataset.title || (mainItem.querySelector(".content h6") ? mainItem.querySelector(".content h6").innerText.trim() : "");
-          const mainDate = mainItem.dataset.date || (mainItem.querySelector(".date h6") ? mainItem.querySelector(".date h6").innerText.trim() : "");
+          // gather current main data
+          const mainVideoId = mainItem.dataset.video;
+          const mainThumb = mainItem.dataset.thumb;
+          const mainTitle =
+            mainItem.dataset.title ||
+            (mainItem.querySelector(".content h6")
+              ? mainItem.querySelector(".content h6").innerText.trim()
+              : "");
+          const mainDate =
+            mainItem.dataset.date ||
+            (mainItem.querySelector(".date h6")
+              ? mainItem.querySelector(".date h6").innerText.trim()
+              : "");
 
           // 1) Put clicked content into main (autoplay)
-          mainItem.innerHTML = makeMainHTML(clickedVideoId, clickedTitle, clickedDate);
+          mainItem.innerHTML = makeMainHTML(
+            clickedVideoId,
+            clickedTitle,
+            clickedDate
+          );
           mainItem.dataset.video = clickedVideoId;
           mainItem.dataset.thumb = clickedThumb;
           mainItem.dataset.title = clickedTitle;
           mainItem.dataset.date = clickedDate;
 
           // 2) Replace clicked slot with the previous main's thumbnail (small)
-          // If there was no previous main (edge case), fall back to clicked's own thumbnail content
-          const replacementThumb = mainThumb || clickedThumb || "Assets/Images/default-thumb.jpg";
+          // If there was no previous main (edge case), fall back to a default thumbnail
+          const replacementThumb =
+            mainThumb || clickedThumb || "Assets/Images/default-thumb.jpg";
           const replacementTitle = mainTitle || clickedTitle || "";
           const replacementDate = mainDate || clickedDate || "";
-          clickedItem.innerHTML = makeThumbHTML(replacementThumb, replacementTitle, replacementDate);
 
-          // update clicked dataset attributes (important for future sorting / swaps)
-          clickedItem.dataset.video = mainVideoId || "";
+          clickedItem.innerHTML = makeThumbHTML(
+            replacementThumb,
+            replacementTitle,
+            replacementDate
+          );
+          clickedItem.dataset.video = mainVideoId || ""; // previous main id (may be empty)
           clickedItem.dataset.thumb = replacementThumb;
-          clickedItem.dataset.title = replacementTitle;
-          clickedItem.dataset.date = replacementDate;
-
-          // 3) Re-sort thumbnails so month-wise order is preserved
-          sortThumbCols();
         });
 
         // End DOMContentLoaded
       });
     </script>
+
+
+
+
+
   </body>
 </html>

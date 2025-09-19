@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CMIS - Chandramari International School</title>
+
+  <link rel="stylesheet" href="Assets/style.css" />
+  <link rel="icon" type="image/x-icon" href="./Assets/Images/logo.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="main-content">
+    <header>
+      <div class="shape">
+        <img class="shape-img" data-aos="fade-down" data-aos-duration="1000" src="Assets/Images/header-shape.png" alt="" />
+        <div class="logo">
+          <a href="index.html">
+            <img src="Assets/Images/logo.png" alt="" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="400"/>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <section class="event-page">
+      <div class="container">
+        <div class="section-title" data-aos="fade-up" data-aos-duration="1000">
+          <h1>School Events & Memories</h1>
+          <p>Catch up on the highlights of every month at CMIS</p>
+        </div>
+
+        <div class="row mb-4">
+          <div class="col-12">
+            <div class="main-video" data-aos="zoom-in" data-aos-duration="1000">
+              <div class="item" data-video="" data-thumb="" data-title="" data-date="">
+                <!-- main video iframe + meta filled by JS -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row all-videos">
+          <div class="title">
+            <h3>Every Month Events</h3>
+          </div>
+          <div class="event-slider">
+            <div class="row">
+              <!-- Thumbnails will be injected here by JS -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/js/all.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", async function () {
+      const API_KEY = 'YOUR_YOUTUBE_API_KEY';  // <--- replace with your API key
+      const CHANNEL_ID = 'UC24eCxzCkFRcydYo9k2-3iA';  // your channel
+      const MAX_RESULTS = 50;  // you can fetch more with pagination
+
+      // Helper: get uploads playlist id for the channel
+      async function fetchUploadsPlaylistId() {
+        const url = `https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=${CHANNEL_ID}&key=${API_KEY}`;
+        const resp = await fetch(url);
+        const data = await resp.json();
+        if (data.items && data.items.length > 0) {
+          return data.items[0].contentDetails.relatedPlaylists.uploads;
+        } else {
+          console.error('Could not fetch uploads playlist id');
+          return null;
+        }
+      }
+
+      // Helper: fetch videos from a playlist (uploads), with pagination
+      async function fetchPlaylistVideos(playlistId, pageToken = '') {
+        const url = new URL('https://www.googleapis.com/youtube/v3/playlistItems');
+        url.searchParams.set('part', 'snippet,contentDetails');
+        url.searchParams.set('playlistId', playlistId);
+        url.searchParams.set('key', API_KEY);
+        url.searchParams.set('maxResults', MAX_RESULTS);
+        if (pageToken) {
+          url.searchParams.set('pageToken', pageToken);
+        }
+
+        const resp = await fetch(url.toString());
+        const data = await resp.json();
+        return data;
+      }
+
+      // Fetch all videos
+      async function fetchAllVideos() {
+        const playlistId = await fetchUploadsPlaylistId();
+        if (!playlistId) return [];
+
+        let allVideos = [];
+        let nextPageToken = '';
+        do {
+          const data = await fetchPlaylistVideos(playlistId, nextPageToken);
+          if (data.items && data.items.length > 0) {
+            allVideos.push(...data.items);
+          }
+          nextPageToken = data.nextPageToken || '';
+        } while (nextPageToken);
+
+        return allVideos;
+      }
+
+      // format date to "Month YYYY"
+      function formatMonthYear(dateStr) {
+        const d = new Date(dateStr);
+        const opt = { month: 'long', year: 'numeric' };
+        return d.toLocaleDateString('en-US', opt);
+      }
+
+      // Build the video display: main + thumbnails
+      function buildVideoDisplay(videos) {
+        if (!videos || videos.length === 0) {
+          console.warn('No videos to display');
+          return;
+        }
+
+        // Map videos to items we need: id, title, thumb, date, month-year timestamp
+        const mapped = videos.map(v => {
+          const snip = v.snippet;
+          return {
+            videoId: snip.resourceId?.videoId || snip.videoId || '',  // sometimes snippet.videoId
+            title: snip.title,
+            thumb: snip.thumbnails?.medium?.url || snip.thumbnails?.default?.url || '',
+            publishedAt: snip.publishedAt,
+            monthYear: formatMonthYear(snip.publishedAt),
+            ts: (new Date(snip.publishedAt)).getTime()
+          };
+        });
+
+        // sort descending by publishedAt
+        mapped.sort((a, b) => b.ts - a.ts);
+
+        // Setup main video: the first (latest)
+        const mainItem = document.querySelector(".main-video .item");
+        const first = mapped[0];
+        mainItem.innerHTML = `
+          <div class="video-frame-wrapper">
+            <iframe width="100%" height="195"
+              src="https://www.youtube.com/embed/${first.videoId}?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1"
+              frameborder="0"
+              allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen></iframe>
+          </div>
+          <div class="item-des">
+            <div class="content"><h6>${first.title}</h6></div>
+            <div class="date"><i class="fa-solid fa-calendar-days"></i><h6>${first.monthYear}</h6></div>
+          </div>
+        `;
+        mainItem.dataset.video = first.videoId;
+        mainItem.dataset.thumb = first.thumb;
+        mainItem.dataset.title = first.title;
+        mainItem.dataset.date = first.monthYear;
+
+        // Build thumbnails for "all videos", skip the one used in main
+        const thumbsContainer = document.querySelector(".all-videos .event-slider .row");
+        thumbsContainer.innerHTML = '';  // clear existing
+
+        mapped.slice(1).forEach(item => {
+          const col = document.createElement('div');
+          col.classList.add('col-6');
+
+          const thumbItem = document.createElement('div');
+          thumbItem.classList.add('item');
+          thumbItem.setAttribute('data-video', item.videoId);
+          thumbItem.setAttribute('data-thumb', item.thumb);
+          thumbItem.setAttribute('data-title', item.title);
+          thumbItem.setAttribute('data-date', item.monthYear);
+
+          thumbItem.innerHTML = `
+            <img class="thumb-img" src="${item.thumb}" alt="${item.title}" />
+            <div class="item-des">
+              <div class="content"><h6>${item.title}</h6></div>
+              <div class="date"><i class="fa-solid fa-calendar-days"></i><h6>${item.monthYear}</h6></div>
+            </div>
+          `;
+
+          col.appendChild(thumbItem);
+          thumbsContainer.appendChild(col);
+        });
+
+        // Add click listener to swap when thumbnail clicked
+        thumbsContainer.addEventListener('click', function(e) {
+          const clicked = e.target.closest(".col-6 .item");
+          if (!clicked) return;
+
+          const clickedVideoId = clicked.dataset.video;
+          const clickedThumb = clicked.dataset.thumb;
+          const clickedTitle = clicked.dataset.title;
+          const clickedDate = clicked.dataset.date;
+
+          // store current main
+          const mainVideoId = mainItem.dataset.video;
+          const mainThumb = mainItem.dataset.thumb;
+          const mainTitle = mainItem.dataset.title;
+          const mainDate = mainItem.dataset.date;
+
+          // replace main
+          mainItem.innerHTML = `
+            <div class="video-frame-wrapper">
+              <iframe width="100%" height="195"
+                src="https://www.youtube.com/embed/${clickedVideoId}?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1"
+                frameborder="0"
+                allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+            </div>
+            <div class="item-des">
+              <div class="content"><h6>${clickedTitle}</h6></div>
+              <div class="date"><i class="fa-solid fa-calendar-days"></i><h6>${clickedDate}</h6></div>
+            </div>
+          `;
+          mainItem.dataset.video = clickedVideoId;
+          mainItem.dataset.thumb = clickedThumb;
+          mainItem.dataset.title = clickedTitle;
+          mainItem.dataset.date = clickedDate;
+
+          // replace clicked thumb with previous main in thumbnail list
+          clicked.innerHTML = `
+            <img class="thumb-img" src="${mainThumb}" alt="${mainTitle}" />
+            <div class="item-des">
+              <div class="content"><h6>${mainTitle}</h6></div>
+              <div class="date"><i class="fa-solid fa-calendar-days"></i><h6>${mainDate}</h6></div>
+            </div>
+          `;
+          clicked.dataset.video = mainVideoId;
+          clicked.dataset.thumb = mainThumb;
+          clicked.dataset.title = mainTitle;
+          clicked.dataset.date = mainDate;
+        });
+      }
+
+      // Fetch & display
+      try {
+        const videos = await fetchAllVideos();
+        buildVideoDisplay(videos);
+      } catch (err) {
+        console.error("Error fetching YouTube videos:", err);
+      }
+    });
+  </script>
+</body>
+</html>
