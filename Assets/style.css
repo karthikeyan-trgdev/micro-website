@@ -8,6 +8,7 @@
 
 body {
   font-family: var(--primary-font);
+  margin: 0;
 }
 
 :root {
@@ -84,7 +85,7 @@ header .logo img {
   background-repeat: no-repeat;
   background-position: bottom;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
