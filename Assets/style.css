@@ -6,6 +6,10 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
+body {
+  font-family: var(--primary-font);
+}
+
 :root {
   --primary-color: #1c4693;
   --secondary-color: #f6c318;
@@ -14,15 +18,10 @@
   --primary-font: "Montserrat", sans-serif;
 }
 
-body {
-  font-family: var(--primary-font);
-}
-
 .container {
   padding: 0px 10px !important;
 }
 
-/* Background wrapper */
 .main-wrapper {
   background-image: url("../Assets/Images/background-image.jpg");
   background-size: cover;
@@ -31,10 +30,14 @@ body {
   z-index: 1;
   overflow: hidden;
 }
+
 .main-wrapper::before {
   content: "";
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
   z-index: 0;
   background-color: #000;
   opacity: 0.9;
@@ -44,38 +47,37 @@ body {
   max-width: 550px;
   margin: auto;
   position: relative;
+  overflow: hidden;
 }
 
-/* Header */
 header {
   position: absolute;
   top: 0;
   width: 100%;
 }
+
 header .shape {
   position: relative;
   transform: translateY(-30px);
 }
+
 header .shape img {
   width: 100%;
   display: block;
 }
-header .shape .shape-img {
-  filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.15))
-          drop-shadow(0px 1px 3px rgba(0, 0, 0, 0.1));
-}
+
 header .logo {
   position: absolute;
   top: 50%;
   left: 55%;
   transform: translate(-50%, -50%);
 }
+
 header .logo img {
   width: 130px;
   display: block;
 }
 
-/* Banner Section */
 .banner-section {
   background-image: url(../Assets/Images/background-image.jpg);
   background-size: cover;
@@ -87,14 +89,17 @@ header .logo img {
   justify-content: center;
   align-items: center;
 }
+
 .banner-section .menu-items {
   width: 300px;
   height: 425px;
   margin: auto;
   text-align: left;
   background-color: var(--primary-color);
+  padding: 0px;
   overflow: hidden;
 }
+
 .banner-section .menu-items .item a {
   display: flex;
   gap: 10px;
@@ -115,29 +120,27 @@ header .logo img {
   justify-content: center;
   align-items: center;
 }
+
 .banner-section .menu-items .item .icon img {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
+
 .banner-section .menu-items .item .content {
   flex: 1;
 }
+
 .banner-section .menu-items .item .content h1 {
   color: #f3f3f3;
   font-size: 15px;
   letter-spacing: 0.5px;
   font-weight: 600;
   margin: 0;
+  font-family: var(--primary-font);
 }
-
-/* Modal */
 .modal-body {
   padding: 0px 10px !important;
-}
-.social-media-modal a {
-  color: #000;
-  text-decoration: none;
 }
 .social-media-modal .modal-content {
   width: 300px !important;
@@ -153,11 +156,40 @@ header .logo img {
 .video-content iframe {
   display: block;
 }
+/* .social-media-modal .social-icon {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  text-align: center;
+  flex-direction: column;
+}
+.social-media-modal .social-icon img {
+  width: 40px;
+  display: flex;
+  margin: 5px auto;
+  justify-content: center;
+}
+.social-media-modal .social-icon h6 {
+  text-align: center;
+  margin-bottom: 0px;
+  font-size: 12px;
+}
+.social-media-modal a {
+  text-decoration: none;
+  color: #000;
+} */
+.social-media-modal a {
+  color: #000;
+  text-decoration: none;
+}
 .social-media-modal .item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #f0f0f0 !important;
+  border-bottom: 1px solid #f0f0f0 !important; /* shorthand hex for rgb(240,240,240) */
   padding: 15px 0;
   flex-shrink: 0;
 }
@@ -172,7 +204,7 @@ header .logo img {
   border-radius: 50%;
   background-color: rgb(234, 250, 255);
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-              rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -192,7 +224,8 @@ header .logo img {
   right: 0;
   background-color: #fff;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-              rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  z-index: 9;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -209,10 +242,13 @@ header .logo img {
   opacity: 0.5;
 }
 
-/* Event Page */
 .event-page {
   padding: 150px 10px 0px 10px;
   background-color: #1d9ed11f;
+}
+header .shape .shape-img {
+  filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.15))
+    drop-shadow(0px 1px 3px rgba(0, 0, 0, 0.1));
 }
 .all-videos {
   padding-top: 30px;
@@ -243,29 +279,35 @@ header .logo img {
   font-size: 14px;
   color: #000;
 }
+.all-videos .item-des .content {
+  display: none;
+}
 .event-page .item-des .content h6 {
-  font-size: 18px;
+  font-size: 15px;
   margin-bottom: 0px;
   padding-bottom: 0px;
   color: #000;
 }
-.all-videos iframe,
+.event-page .all-videos .item-des {
+  display: none;
+}
+.all-videos iframe {
+  border-radius: 10px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
 .main-video iframe {
   border-radius: 10px;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-              rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-}
-.main-video iframe {
-  height: 280px;
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 .all-videos .item {
   margin-bottom: 20px;
-  cursor: pointer;
 }
 .event-page .item {
   background-color: #fff;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-              rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
   padding: 5px;
   border-radius: 10px;
 }
@@ -282,18 +324,36 @@ header .logo img {
 .event-page .section-title p {
   font-size: 15px;
 }
+
 .all-videos .item img.thumb-img {
   width: 100%;
-  height: 120px;
+  height: 80px;
   object-fit: cover;
   display: block;
   border-radius: 8px;
 }
 
-/* Responsive */
+/* make items clickable */
+.all-videos .item {
+  cursor: pointer;
+}
+
+.main-video iframe{
+  height: 280px;
+}
+.all-videos .item img.thumb-img{
+  height: 120px;
+}
+.event-page .item-des .content h6{
+  font-size: 18px;
+}
+
+/* responsive */
+
 @media only screen and (max-width: 600px) {
   .main-content {
     max-width: 100%;
+    width: 100%;
   }
   header .shape {
     transform: none;
@@ -304,48 +364,78 @@ header .logo img {
   header .logo {
     top: 40%;
   }
-  .social-media-modal .modal-dialog {
-    margin: 0 !important;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+  .social-media-modal .modal-content {
+    width: 250px !important;
+    height: 322px;
+    margin: auto;
   }
+  .banner-section .menu-items .item .content h1 {
+    font-size: 11px;
+  }
+  .banner-section .menu-items .item .icon {
+    height: 45px;
+    width: 45px;
+    padding: 12px;
+  }
+  .banner-section .menu-items {
+    width: 250px;
+    height: 322px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .social-media-modal .modal-dialog {
+    margin: 0 !important; /* remove Bootstrap spacing */
+    height: 100vh; /* force full viewport height */
+    display: flex;
+    align-items: center; /* vertical center */
+    justify-content: center; /* horizontal center */
+  }
+
   .social-media-modal .modal-content {
     width: 250px !important;
     height: 322px;
     margin: 0 !important;
-    position: relative;
+    position: relative; /* let flexbox center it */
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
   }
   .social-media-modal .profile-image {
     height: 44px;
     width: 44px;
   }
   .social-media-modal .profile-name h3 {
-    font-size: 12px;
-  }
-  .modal-header h1 {
-    font-size: 15px !important;
-  }
-  .social-media-modal .item {
-    padding: 10px 0;
-  }
-  .event-page .section-title h1 {
-    font-size: 20px;
-  }
-  .event-page .section-title p {
-    font-size: 12px;
-  }
-  .main-video iframe {
-    height: 192px;
-  }
-  .all-videos .item img.thumb-img {
-    height: 80px;
-  }
-  .event-page .item-des .content h6 {
-    font-size: 15px;
-  }
-  .event-page .date h6 {
-    font-size: 12px;
-  }
+  font-size: 12px;
+}
+.modal-header h1 {
+  font-size: 15px !important;
+}
+.social-media-modal .item {
+  padding: 10px 0;
+}
+.event-page .section-title h1 {
+  font-size: 20px;
+}
+.event-page .section-title p {
+  font-size: 12px;
+}
+.main-video iframe{
+  height: 192px;
+}
+.main-video iframe{
+  height: 192px;
+}
+.all-videos .item img.thumb-img{
+  height: 80px;
+}
+.event-page .item-des .content h6{
+  font-size: 15px;
+}
+.event-page .date h6{
+  font-size: 12px;
+}
 }
